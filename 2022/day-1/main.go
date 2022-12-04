@@ -24,7 +24,8 @@ func main() {
 }
 
 func mostCalories(input string) (int, error) {
-	elves := strings.Split(input, "\n\n")
+	cleanInput := strings.TrimSpace(input)
+	elves := strings.Split(cleanInput, "\n\n")
 
 	mostCalories := 0
 
@@ -32,10 +33,6 @@ func mostCalories(input string) (int, error) {
 		items := strings.Split(elf, "\n")
 		totalCalories := 0
 		for _, calories := range items {
-			if calories == "" {
-				continue
-			}
-
 			i, err := strconv.Atoi(calories)
 			if err != nil {
 				return 0, fmt.Errorf("unable to convert elf calories, %w", err)
